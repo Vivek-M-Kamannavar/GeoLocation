@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated Location QR Generator</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Inter font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+     <link rel="stylesheet" href="style.css">
+    <!-- Load QR Code Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    
+    
+</head>
+
+<body class="bg-gray-100 min-h-screen flex items-center justify-center p-4">
+
+    <!-- Main Application Container (Card) -->
+    <div id="qr-app-container" class="bg-white p-6 md:p-10 rounded-xl shadow-2xl w-full max-w-lg opacity-0">
+        
+        <h1 class="text-3xl font-extrabold text-violet-700 mb-4 text-center">Location QR Code Generator</h1>
+        <p class="text-gray-600 mb-8 text-center">Generate a scannable QR code for a map location.</p>
+
+        <!-- Dynamic Message Box -->
+        <div id="message-box" class="p-3 mb-4 rounded-lg text-sm text-center hidden" role="alert"></div>
+
+        <!-- Geolocation Section -->
+        <fieldset class="border-2 border-dashed border-violet-300 p-4 rounded-xl mb-6 hover:border-violet-500 transition duration-300">
+            <legend class="text-lg font-semibold text-violet-600 px-2">Use Current Location</legend>
+            <div class="flex flex-col space-y-3">
+                <input type="text" id="geo-input" readonly placeholder="Click button to fetch location..." class="w-full p-3 rounded-lg bg-violet-50 text-gray-700 border border-violet-200 cursor-default shadow-inner">
+                <button id="get-location-btn" class="pulse-button bg-violet-500 text-white p-3 rounded-lg font-bold hover:bg-violet-600 transition duration-300 shadow-md">
+                    <span id="btn-text">Get My Current Location</span>
+                    <svg id="spinner" class="animate-spin h-5 w-5 text-white inline-block ml-2 hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                </button>
+            </div>
+        </fieldset>
+
+        <!-- Manual Entry Section -->
+        <fieldset class="border-2 border-dashed border-gray-300 p-4 rounded-xl mb-8">
+            <legend class="text-lg font-semibold text-gray-600 px-2">OR Manually Add Address</legend>
+            <div class="space-y-3">
+                <input type="text" id="address-input" placeholder="Street Address / Landmark" class="w-full p-3 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
+                <div class="grid grid-cols-2 gap-3">
+                    <input type="text" id="city-input" placeholder="City" class="w-full p-3 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
+                    <input type="text" id="state-input" placeholder="State / Country" class="w-full p-3 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
+                </div>
+            </div>
+        </fieldset>
+
+        <!-- Generate Button -->
+        <button id="generate-qr-btn" class="w-full bg-blue-500 text-white p-4 rounded-xl font-extrabold text-xl hover:bg-blue-600 transition duration-300 shadow-lg shadow-blue-300 hover:shadow-xl hover:scale-[1.01]">
+            Generate QR Code
+        </button>
+
+        <!-- QR Code Output Area -->
+        <div class="mt-8 pt-4 border-t border-gray-200">
+            <h2 class="text-xl font-bold text-gray-700 mb-4 text-center">Your QR Code</h2>
+            <div id="qrcode-output" class="bg-gray-50 border border-gray-300 rounded-lg shadow-inner flex justify-center items-center">
+                <p class="text-gray-400">QR code will appear here after generation.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

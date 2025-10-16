@@ -1,0 +1,61 @@
+
+        /* Custom Font Setup */
+        :root {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Keyframes for Card Entrance Animation */
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.95) translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        /* Keyframes for Button Pulse on Hover */
+        @keyframes pulseShadow {
+            0% {
+                box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.7); /* Violet-500 */
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(139, 92, 246, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(139, 92, 246, 0);
+            }
+        }
+
+        /* Apply entrance animation to the main card */
+        #qr-app-container {
+            animation: fadeInScale 0.8s ease-out forwards;
+        }
+
+        /* Apply pulse animation on hover to primary buttons */
+        .pulse-button:hover {
+            animation: pulseShadow 1s infinite;
+        }
+
+        /* Custom styling for the QR code container to allow smooth transitions */
+        #qrcode-output {
+            transition: opacity 0.3s ease-in-out;
+            min-height: 150px; /* Ensure space even when empty */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+        }
+
+        /* Style for the QR code canvas itself, centered and responsive */
+        #qrcode-output > div {
+            margin: auto;
+        }
+
+        /* Fieldset animation */
+        fieldset {
+            transition: all 0.5s ease;
+        }
+    
